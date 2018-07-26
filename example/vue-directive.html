@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue_directive</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>Vue_directive</h1>
+	<hr>
+	<div id="app">
+		<div>
+			<p v-lkj="color">{{number}}</p>
+			<button @click="jia">Add</button>
+		</div>
+		<p>
+			<button onclick="unbind()">解绑</button>
+		</p>
+	</div>
+	
+	<script type="text/javascript">
+		function unbind(){
+			app.$destroy();
+		}
+		Vue.directive("lkj",{
+			bind:function(el,binding){//只调用一次，指令第一次绑定到元素时调用
+			    console.log('1 - bind');
+			    el.style="color:"+binding.value;
+			},
+			inserted:function(){//绑定到节点，父节点存在即可调用
+			    console.log('2 - inserted');
+			},
+			update:function(){//组件更新时调用，无论绑定值是否变化
+			    console.log('3 - update');
+			},
+			componentUpdated:function(){//组件更新完成
+			    console.log('4 - componentUpdated');
+			},
+			unbind:function(){//解绑，只调用一次
+			    console.log('5 - unbind');
+			}
+			// function(el,binding){
+			// console.log(el);
+			// console.log(binding);
+			// el.style="color:"+binding.value;
+		});
+
+		var app = new Vue({
+			el:'#app',
+			data:{
+				number:10,
+				color:'red'
+			},
+			methods:{
+				jia:function(){
+					this.number++;
+				}
+			}
+		})
+	</script>
+</body>
+</html>
