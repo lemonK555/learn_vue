@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Watch方法选项</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>Methods方法选项</h1>
+	<hr>
+	<div id="app">
+		<p>今日温度：{{temperature}}</p>	
+		<p>穿衣建议：{{clothes}}</p>	
+		<button @click="addTem">增加温度</button>
+		<button @click="reduceTem">减少温度</button>
+	</div>
+	
+	<script type="text/javascript">
+		var chuanyiArray=['T恤短裙','夹克长裙','棉衣羽绒服'];
+		var app = new Vue({
+			el:'#app',
+			data:{
+				temperature:14,
+				clothes:'夹克长裙'
+			},
+			methods:{
+				addTem:function(){
+					this.temperature+=5;
+				},
+				reduceTem:function(){
+					this.temperature-=5;
+				}
+			}
+		});
+		app.$watch('temperature',function(newVal,oldVal){
+			if(newVal>=26){
+				this.clothes = chuanyiArray[0];
+			}else if(newVal<26&&newVal>=0){
+				this.clothes = chuanyiArray[1];
+			}else{
+				this.clothes = chuanyiArray[2];
+			}
+		})
+	</script>
+</body>
+</html>
