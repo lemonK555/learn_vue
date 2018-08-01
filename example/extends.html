@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Extends扩展选项</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>Extends扩展选项</h1>
+	<hr>
+	<div id="app">
+		<p>num:{{num}}</p>
+		<!-- <p>num:${num}</p>		 -->
+		<button @click="add">增加</button>
+	</div>
+	
+	<script type="text/javascript">
+		 var bbb={
+            created:function(){
+                console.log("我是被扩展出来的");
+            },
+            methods:{
+                add:function(){
+                    console.log('我是被扩展出来的方法！');
+                }
+            }
+        };
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:1,
+            },
+            methods:{
+                add:function(){
+                    console.log('我是原生方法');
+                }
+            },
+            extends:bbb,
+            // delimiters:['${','}']
+        })
+	</script>
+</body>
+</html>
