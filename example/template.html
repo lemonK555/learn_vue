@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Template</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>Template</h1>
+	<hr>
+	<div id="app">
+		{{message}}
+	</div>
+	<template id="dd2">
+		<h2 style="color:red">我是template标签模板</h2>
+	</template>
+
+	<script type="x-template" id="dd3">
+		<h2 style="color:red">我是script标签模板</h2>
+	</script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'#app',
+			data:{
+				message:'HelloWorld!'
+			},
+			// 在标签中建模板，template适用于量大的,script适用于外部引用
+			template:"#dd3"
+			// 在选项中建模板,适用于小模板
+			// template:`
+			// 	<h2 style="color:red">我是选项模板</h2>
+			// `
+		})
+	</script>
+</body>
+</html>
