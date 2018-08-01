@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>solt</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>solt</h1>
+	<hr>
+	<div id="app">
+		<lkj>
+			<span slot="bolgUrl">{{lkjData.bolgUrl}}</span>
+			<span slot="netName">lkj</span>
+			<span slot="skill">{{lkjData.skill}}</span>
+		</lkj>
+	</div>
+	<template id="tep">
+		<div>
+			<p>地址：<slot name="bolgUrl"></slot></p>
+			<p>名称：<slot name="netName"></slot></p>
+			<p>技能：<slot name="skill"></slot></p>
+		</div>
+	</template>
+	
+	<script type="text/javascript">
+		var lkj = {
+			template:"#tep"
+		}
+		var app = new Vue({
+			el:'#app',
+			data:{
+				lkjData:{
+					bolgUrl:'http://www.baidu.com',
+					netName:'lkj',
+					skill:"web前端"
+				}
+			},
+			components:{
+				"lkj":lkj
+			}
+		})
+	</script>
+</body>
+</html>
