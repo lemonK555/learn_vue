@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实例方法</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script type="text/javascript" src="../assets/js/vue.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+	<h1>实例方法</h1>
+	<hr>
+	<div id="app">
+		
+	</div>
+	<p><button onclick="destroy()">卸载</button></p><p><button onclick="reload()">刷新</button></p>
+	<p><button onclick="tick()">更改数据</button></p>
+	<script type="text/javascript">
+		var lkj = Vue.extend({
+			template:`<p>{{message}}</p>`,
+			data:function(){
+				return{
+					message:'Hello ,I am lkj!'
+				}
+			},
+			mounted:function(){
+				console.log("mounted被创建");
+			},
+			destroyed:function(){
+				console.log("destory销毁之后");
+			},
+			updated:function(){
+				console.log("updated更新之后");
+			}
+		});
+		var vm = new lkj().$mount("#app");
+		function destroy(){
+			vm.$destroy();
+		}
+		function reload(){
+			vm.$forceUpdate();
+		}
+		function tick(){
+			vm.message = "修改信息前";
+			vm.$nextTick(function(){
+				console.log('message更新完后被调用了');
+			})
+		}
+	</script>
+</body>
+</html>
